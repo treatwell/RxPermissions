@@ -1,7 +1,6 @@
 package com.devdoo.rxpermissions;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -10,7 +9,6 @@ import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,13 +62,6 @@ public class RxPermission extends Fragment {
 	@Override
 	public void onAttach(Context context) {
 		super.onAttach(context);
-		attachedSubject.onNext(true);
-		attachedSubject.onCompleted();
-	}
-
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
 		attachedSubject.onNext(true);
 		attachedSubject.onCompleted();
 	}
@@ -160,11 +151,9 @@ public class RxPermission extends Fragment {
 		if (!unrequestedPermissions.isEmpty()) {
 			requestPermission(unrequestedPermissions.toArray(new String[1]));
 		}
-		if (isAdded()) {
-			return Observable.concat(Observable.from(list));
-		} else {
-			return attachedSubject.flatMap(isAttached -> Observable.concat(Observable.from(list)));
-		}
+		// we have to be attached already. It's guaranteed by callers (bind to attachedSubject if
+		// needed
+		return Observable.concat(Observable.from(list));
 	}
 
 	@Override
