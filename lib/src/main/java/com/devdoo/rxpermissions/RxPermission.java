@@ -151,8 +151,8 @@ public class RxPermission extends Fragment {
 		if (!unrequestedPermissions.isEmpty()) {
 			requestPermission(unrequestedPermissions.toArray(new String[1]));
 		}
-		// we have to be attached already. It's guaranteed by callers (bind to attachedSubject if
-		// needed
+		// we have to be attached already. It's guaranteed by callers (request, requestEach bind to
+		// attachedSubject if needed)
 		return Observable.concat(Observable.from(list));
 	}
 
