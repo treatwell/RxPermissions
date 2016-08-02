@@ -26,12 +26,11 @@ public class RxPermission extends Fragment {
 	public static final String NO_PERMISSONS_EXCEPTION = "RxPermissions request requires at least one input permission";
 	private static final String TAG = RxPermission.class.getSimpleName();
 	private static final int REQUEST_PERMISSIONS_CODE = 10;
-	private PublishSubject<Boolean> attachedSubject;
-	private static Map<String, PublishSubject<Permission>> mSubjects;
 
-	public RxPermission() {
-		attachedSubject = PublishSubject.create();
-	}
+	private final PublishSubject<Boolean> attachedSubject = PublishSubject.create();
+	private final Map<String, PublishSubject<Permission>> mSubjects = new HashMap<>();
+
+	public RxPermission() {}
 
 	/**
 	 * Create an instance of the shadow fragment
@@ -48,7 +47,6 @@ public class RxPermission extends Fragment {
 			fragmentManager.beginTransaction()
 					.add(rxPermission, TAG)
 					.commit();
-			mSubjects = new HashMap<>();
 		}
 		return rxPermission;
 	}
