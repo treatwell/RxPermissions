@@ -1,7 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: "com.jfrog.bintray"
-apply plugin: 'me.tatarka.retrolambda'
 
 def siteUrl = 'https://github.com/pietroleggero/RxPermissions'
 def gitUrl = 'https://github.com/pietroleggero/RxPermissions.git'
@@ -56,44 +54,21 @@ android {
 	}
 }
 
-
-
-
-install {
-	repositories.mavenInstaller {
-		pom {
-			project {
-				packaging 'aar'
-				name 'RxPermissions An easy way to request Android M permission using rxjava'
-				url siteUrl
-				licenses {
-					license {
-						name 'The Apache Software License, Version 2.0'
-						url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-					}
-				}
-				developers {
-					developer {
-						id 'devdoo'
-						name 'devdoo'
-						email 'devdooteam@gmail.com'
-					}
-				}
-				scm {
-					connection gitUrl
-					developerConnection gitUrl
-					url siteUrl
-
-				}
-			}
-		}
+buildscript {
+	repositories {
+		jcenter()
+		google()
+	}
+	dependencies {
+		classpath 'com.android.tools.build:gradle:3.0.1'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
 	}
 }
 
 dependencies {
-	compile 'com.android.support:appcompat-v7:23.1.0'
+	compile 'com.android.support:appcompat-v7:23.4.0'
 	compile 'junit:junit:4.12'
-	compile 'io.reactivex:rxjava:1.0.14'
+	compile "io.reactivex:rxjava:$rxjava_version"
 }
 
 task sourcesJar(type: Jar) {
