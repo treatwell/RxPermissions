@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: "com.jfrog.bintray"
 
 def siteUrl = 'https://github.com/pietroleggero/RxPermissions'
 def gitUrl = 'https://github.com/pietroleggero/RxPermissions.git'
@@ -7,28 +6,13 @@ def gitUrl = 'https://github.com/pietroleggero/RxPermissions.git'
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-bintray {
-	user = properties.getProperty("bintray.user")
-	key = properties.getProperty("bintray.apikey")
-
-	configurations = ['archives']
-	pkg {
-		repo = "maven"
-		name = "RxPermissions"
-		websiteUrl = siteUrl
-		vcsUrl = gitUrl
-		licenses = ["Apache-2.0"]
-		publish = true
-	}
-}
-
 android {
-	compileSdkVersion 23
+	compileSdkVersion 27
 	buildToolsVersion '27.0.3'
 
 	defaultConfig {
-		minSdkVersion 11
-		targetSdkVersion 23
+		minSdkVersion 19
+		targetSdkVersion 27
 		versionCode 2
 		version = '1.0.2'
 		group = 'com.devdoo.rxpermissions'
@@ -54,20 +38,8 @@ android {
 	}
 }
 
-buildscript {
-	repositories {
-		jcenter()
-		google()
-	}
-	dependencies {
-		classpath 'com.android.tools.build:gradle:3.0.1'
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
-	}
-}
-
 dependencies {
-	compile 'com.android.support:appcompat-v7:23.4.0'
-	compile 'junit:junit:4.12'
+	compile 'com.android.support:appcompat-v7:27.1.0'
 	compile "io.reactivex:rxjava:$rxjava_version"
 }
 
