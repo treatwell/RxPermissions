@@ -3,8 +3,8 @@ apply plugin: 'com.android.library'
 def siteUrl = 'https://github.com/pietroleggero/RxPermissions'
 def gitUrl = 'https://github.com/pietroleggero/RxPermissions.git'
 
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
 	compileSdkVersion versions.compileSdk
