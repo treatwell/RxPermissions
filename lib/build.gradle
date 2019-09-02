@@ -11,7 +11,7 @@ android {
 	buildToolsVersion versions.buildTools
 
 	defaultConfig {
-		minSdkVersion 19
+		minSdkVersion versions.minSdk
 		targetSdkVersion versions.targetSdk
 		versionCode 2
 		version = 'tw_1.0.2'
@@ -62,6 +62,8 @@ artifacts {
 	archives sourcesJar
 }
 
-task findConventions << {
-	println project.getConvention()
+task findConventions {
+	doLast {
+		println project.getConvention()
+	}
 }

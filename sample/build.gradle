@@ -13,13 +13,13 @@ buildscript {
 
 
 android {
-	compileSdkVersion 23
-	buildToolsVersion "27.0.3"
+	compileSdkVersion versions.compileSdk
+	buildToolsVersion versions.buildTools
 
 	defaultConfig {
 		applicationId "com.devdoo.sample"
-		minSdkVersion 11
-		targetSdkVersion 23
+		minSdkVersion versions.minSdk
+		targetSdkVersion versions.targetSdk
 		versionCode 1
 		versionName "1.0"
 	}
@@ -39,10 +39,10 @@ android {
 }
 
 dependencies {
-	compile fileTree(include: ['*.jar'], dir: 'libs')
-	testCompile 'junit:junit:4.12'
-	compile 'io.reactivex:rxjava:1.0.14'
-	compile 'com.android.support:appcompat-v7:23.1.0'
-	compile 'com.android.support:design:23.1.0'
-	compile project(':lib')
+	implementation fileTree(include: ['*.jar'], dir: 'libs')
+	testImplementation 'junit:junit:4.12'
+	implementation 'io.reactivex:rxjava:1.0.14'
+	implementation 'androidx.appcompat:appcompat:1.0.2'
+	implementation 'com.google.android.material:material:1.0.0'
+	implementation project(':lib')
 }
